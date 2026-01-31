@@ -25,3 +25,8 @@ pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonCat.tscn"
 [node name="Hole" parent="." instance=ExtResource("5_8sqeh")]
 position = Vector2(220, 180)
 script = ExtResource("6_57mne")
+
+[node name="ToRoom2" parent="." instance=ExtResource("3_afa26")]
+position = Vector2(0, 100)
+direction = Vector2(-1, 0)
+pathToRoom = "res://Scenes/Forest_Scene/River_Scene.tscn"
