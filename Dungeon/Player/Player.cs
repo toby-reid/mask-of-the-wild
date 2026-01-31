@@ -76,7 +76,7 @@ namespace Dungeon
             deerTimer.WaitTime = moveTimer.WaitTime / deerScalar;
             deerTimer.OneShot = true;
             deerTimer.Timeout += FixPosition;
-            deerTimer.Timeout += () => TryDeerAction();
+            deerTimer.Timeout += () => TryDeerAction(true);
             AddChild(deerTimer);
         }
 
