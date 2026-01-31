@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c375qwpld77p4"]
+
+[ext_resource type="Script" uid="uid://cipxjodmn3t3w" path="res://Dungeon/Puzzles/DoorButton/TimerButton.cs" id="1_iigc5"]
+
+[node name="TimerButton" type="Timer"]
+one_shot = true
+script = ExtResource("1_iigc5")

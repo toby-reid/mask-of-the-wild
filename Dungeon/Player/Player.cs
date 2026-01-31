@@ -85,13 +85,9 @@ namespace Dungeon
 
         public override void _PhysicsProcess(double delta)
         {
-            bool canMove =
-                changeDirectionTimer.IsStopped()
-                && moveTimer.IsStopped()
-                && rabbitTimer.IsStopped()
-                && deerTimer.IsStopped();
-            if (canMove)
+            if (CanMove())
             {
+                bool canMove = true;
                 foreach (var (moveKey, moveDir) in Controls.MoveDir)
                 {
                     if (Input.IsActionPressed(moveKey))
@@ -147,6 +143,14 @@ namespace Dungeon
                 Velocity += GetGravity();
             }
             MoveAndSlide();
+        }
+
+        public bool CanMove()
+        {
+            return changeDirectionTimer.IsStopped()
+                && moveTimer.IsStopped()
+                && rabbitTimer.IsStopped()
+                && deerTimer.IsStopped();
         }
 
         private void FaceDir(Vector2 direction)

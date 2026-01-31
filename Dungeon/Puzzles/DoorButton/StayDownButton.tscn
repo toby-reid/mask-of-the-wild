@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kinaepl5ptht"]
+
+[ext_resource type="Script" uid="uid://ccahqswk2bbw1" path="res://Dungeon/Puzzles/DoorButton/StayDownButton.cs" id="1_sjo5k"]
+
+[node name="StayDownButton" type="Node"]
+script = ExtResource("1_sjo5k")

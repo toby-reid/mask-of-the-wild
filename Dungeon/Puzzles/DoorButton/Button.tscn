@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cywqi6iue785i"]
+
+[ext_resource type="Script" uid="uid://b36dg383el2pl" path="res://Dungeon/Puzzles/DoorButton/Button.cs" id="1_gxg0t"]
+[ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="2_7vcs5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uc0c6"]
+size = Vector2(6, 6)
+
+[node name="Button" type="Area2D"]
+script = ExtResource("1_gxg0t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_uc0c6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(10, 10)
+scale = Vector2(0.078125, 0.078125)
+texture = ExtResource("2_7vcs5")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu46ho5bjst2r"]
+
+[ext_resource type="Script" uid="uid://cvax87dbhug8h" path="res://Dungeon/Puzzles/DoorButton/PopUpButton.cs" id="1_plom5"]
+
+[node name="PopUpButton" type="Node"]
+script = ExtResource("1_plom5")

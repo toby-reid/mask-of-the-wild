@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://ed8yvb4tubey"]
+
+[ext_resource type="Script" uid="uid://dmfaid0550mqx" path="res://Dungeon/Puzzles/Door/Door.cs" id="1_rbyj0"]
+[ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="2_gy2w4"]
+[ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="3_qdw6v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hgf7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qdw6v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_rbyj0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = ExtResource("2_gy2w4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15625, 0.15625)
+sprite_frames = SubResource("SpriteFrames_hgf7t")
+centered = false
