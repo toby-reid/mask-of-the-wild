@@ -8,6 +8,8 @@ namespace Dungeon
         private const string IdleLeft = "idle_left";
         private const string WalkLeft = "walk_left";
 
+        private static bool hasBeenDefeated = false;
+
         [Export]
         private AnimatedSprite2D sprite; // set in Godot
 
@@ -21,7 +23,7 @@ namespace Dungeon
         public override void _Ready()
         {
             player = GetNode<Player>(playerPath);
-            if (Global.PersistentData.AvailableMasks != new HashSet<Global.Masks>{Global.Masks.NONE, Global.Masks.RABBIT})
+            if (hasBeenDefeated || !Global.PersistentData.AvailableMasks.Contains(Global.Masks.RABBIT))
             {
                 QueueFree();
             }

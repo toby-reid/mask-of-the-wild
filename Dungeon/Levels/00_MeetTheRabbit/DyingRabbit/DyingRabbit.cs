@@ -16,6 +16,13 @@ namespace Dungeon
         [Export]
         private Timer breatheAndDie;
 
+        [Export]
+        private PackedScene dialogueBox;
+
+        private DialogueBox textBox;
+
+        private Player player;
+
         private bool isDying = false;
 
         // Called when the node enters the scene tree for the first time.
@@ -30,6 +37,7 @@ namespace Dungeon
             {
                 cutsceneTrigger.BodyEntered += OnBodyEntered;
                 breatheAndDie.Timeout += OnBreathEnd;
+                sprite.Play();
             }
         }
 
@@ -47,6 +55,10 @@ namespace Dungeon
                             CreateDialogue();
                             Global.PersistentData.AvailableMasks.Add(Global.Masks.RABBIT);
                         }
+                        else if (!IsInstanceValid(textBox))
+                        {
+                            player.LockMovement(false);
+                        }
                     }
                 }
                 else
@@ -60,6 +72,7 @@ namespace Dungeon
         {
             if (body is Player player)
             {
+                this.player = player;
                 player.LockMovement();
                 breatheAndDie.Start();
                 isDying = true;
@@ -74,7 +87,17 @@ namespace Dungeon
 
         private void CreateDialogue()
         {
-
+            textBox = dialogueBox.Instantiate<DialogueBox>();
+            textBox.SetText([
+                "(. . .)",
+                "(It seems you were too late.)",
+                "(The rabbit is already dead.)",
+                "(...?\n(What's this?)",
+                "(You can still feel a presence nearby...)",
+                "(You reach out for the rabbit, but all you \ncan grasp is this mask.)",
+                "(Press Select/E to change masks.)"
+            ]);
+            AddChild(textBox);
         }
     }
 }

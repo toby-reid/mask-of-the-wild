@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://cplruxgkh00w3"]
+[gd_scene load_steps=6 format=4 uid="uid://cplruxgkh00w3"]
 
 [ext_resource type="PackedScene" uid="uid://devc7554pqg3k" path="res://Dungeon/Environment/DungeonTiles/DungeonTileMap.tscn" id="1_aj6b5"]
 [ext_resource type="PackedScene" uid="uid://cphs5d5t56ov3" path="res://Dungeon/Player/Player.tscn" id="2_jk8lo"]
 [ext_resource type="PackedScene" uid="uid://dwdi0ht751can" path="res://Dungeon/Meta/ToRoom/ToRoom.tscn" id="3_afa26"]
-[ext_resource type="PackedScene" uid="uid://bq3h3e7mjogf1" path="res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonCat.tscn" id="4_57uww"]
 [ext_resource type="PackedScene" uid="uid://bs8dap7eg362j" path="res://Dungeon/Environment/Hazards/Hole/Hole.tscn" id="5_8sqeh"]
 [ext_resource type="Script" uid="uid://b883g25igyart" path="res://Dungeon/Environment/Hazards/Hole/FreeWithoutRabbit.cs" id="6_57mne"]
 
@@ -21,7 +20,7 @@ position = Vector2(20, 100)
 
 [node name="ToRoom" parent="." instance=ExtResource("3_afa26")]
 position = Vector2(300, 100)
-roomTo = ExtResource("4_57uww")
+pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonCat.tscn"
 
 [node name="Hole" parent="." instance=ExtResource("5_8sqeh")]
 position = Vector2(220, 180)

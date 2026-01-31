@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bq3h3e7mjogf1"]
+[gd_scene load_steps=8 format=4 uid="uid://bq3h3e7mjogf1"]
 
 [ext_resource type="PackedScene" uid="uid://devc7554pqg3k" path="res://Dungeon/Environment/DungeonTiles/DungeonTileMap.tscn" id="1_r8l74"]
 [ext_resource type="PackedScene" uid="uid://bs8dap7eg362j" path="res://Dungeon/Environment/Hazards/Hole/Hole.tscn" id="2_gk6qs"]
 [ext_resource type="PackedScene" uid="uid://dwdi0ht751can" path="res://Dungeon/Meta/ToRoom/ToRoom.tscn" id="3_1hsoj"]
 [ext_resource type="PackedScene" uid="uid://ed8yvb4tubey" path="res://Dungeon/Puzzles/Door/Door.tscn" id="4_mig3o"]
 [ext_resource type="PackedScene" uid="uid://bu46ho5bjst2r" path="res://Dungeon/Puzzles/DoorButton/PopUpButton.tscn" id="5_xxsle"]
-[ext_resource type="PackedScene" uid="uid://bksdxvc266gp6" path="res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonRabbit.tscn" id="6_lmcwg"]
 [ext_resource type="PackedScene" uid="uid://cphs5d5t56ov3" path="res://Dungeon/Player/Player.tscn" id="7_xxsle"]
 [ext_resource type="PackedScene" uid="uid://co3ocot7oorkd" path="res://Dungeon/Levels/00_MeetTheRabbit/CopyCat/CopyCat.tscn" id="8_lmcwg"]
 
@@ -76,6 +75,7 @@ position = Vector2(220, 80)
 [node name="ToRoom" parent="." instance=ExtResource("3_1hsoj")]
 position = Vector2(0, 100)
 direction = Vector2(-1, 0)
+pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonStart.tscn"
 
 [node name="Door" parent="." instance=ExtResource("4_mig3o")]
 position = Vector2(0, 120)
@@ -87,7 +87,7 @@ rotation = 1.5707964
 
 [node name="ToRoom2" parent="." instance=ExtResource("3_1hsoj")]
 position = Vector2(300, 100)
-roomTo = ExtResource("6_lmcwg")
+pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonRabbit.tscn"
 
 [node name="Player" parent="." instance=ExtResource("7_xxsle")]
 position = Vector2(20, 100)

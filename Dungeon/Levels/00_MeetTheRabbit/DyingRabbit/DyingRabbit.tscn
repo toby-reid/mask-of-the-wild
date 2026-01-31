@@ -1,3 +1,126 @@
-[gd_scene format=3 uid="uid://draixch0x2ni7"]
+[gd_scene load_steps=18 format=3 uid="uid://draixch0x2ni7"]
 
-[node name="DyingRabbit" type="Node2D"]
+[ext_resource type="Script" uid="uid://c511fdkqtwema" path="res://Dungeon/Levels/00_MeetTheRabbit/DyingRabbit/DyingRabbit.cs" id="1_ou5av"]
+[ext_resource type="PackedScene" uid="uid://di1whgsbtgif8" path="res://Dungeon/Meta/DialogueBox/DialogueBox.tscn" id="2_4roro"]
+[ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="2_6pn7x"]
+[ext_resource type="Texture2D" uid="uid://hjs0s7ikgd0h" path="res://Dungeon/Levels/00_MeetTheRabbit/DyingRabbit/dying_rabbit_animation.png" id="3_4roro"]
+[ext_resource type="Texture2D" uid="uid://cvbw0ae3kkaf" path="res://Dungeon/Levels/00_MeetTheRabbit/DyingRabbit/rabbit_idle_animation.png" id="4_wh78t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ky3w"]
+atlas = ExtResource("3_4roro")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk346"]
+atlas = ExtResource("3_4roro")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_da7r6"]
+atlas = ExtResource("3_4roro")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou7sg"]
+atlas = ExtResource("3_4roro")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sd08"]
+atlas = ExtResource("3_4roro")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qw2l"]
+atlas = ExtResource("3_4roro")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyurn"]
+atlas = ExtResource("3_4roro")
+region = Rect2(120, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3rn5q"]
+atlas = ExtResource("3_4roro")
+region = Rect2(140, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhlq6"]
+atlas = ExtResource("3_4roro")
+region = Rect2(160, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sp6e4"]
+atlas = ExtResource("4_wh78t")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_578n6"]
+atlas = ExtResource("4_wh78t")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5lbny"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ky3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk346")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_da7r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou7sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sd08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qw2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyurn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3rn5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhlq6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sp6e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_578n6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[node name="DyingRabbit" type="Node2D" node_paths=PackedStringArray("sprite", "cutsceneTrigger", "breatheAndDie")]
+script = ExtResource("1_ou5av")
+sprite = NodePath("AnimatedSprite2D")
+cutsceneTrigger = NodePath("Area2D")
+breatheAndDie = NodePath("BreatheAndDie")
+dialogueBox = ExtResource("2_4roro")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-10, 10)
+shape = ExtResource("2_6pn7x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5lbny")
+animation = &"idle"
+centered = false
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(10, 10)
+shape = ExtResource("2_6pn7x")
+
+[node name="BreatheAndDie" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

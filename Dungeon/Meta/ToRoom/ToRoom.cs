@@ -12,7 +12,7 @@ namespace Dungeon
         private string pathToPlayer = "../Player";
 
         [Export]
-        private PackedScene roomTo;
+        private string pathToRoom;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -24,6 +24,7 @@ namespace Dungeon
                 player.FaceDir(Global.PersistentData.RoomTransitionDirection);
             }
             BodyEntered += OnBodyEntered;
+
         }
 
         public void OnBodyEntered(Node2D body)
@@ -31,7 +32,7 @@ namespace Dungeon
             if (body is Player)
             {
                 Global.PersistentData.RoomTransitionDirection = direction;
-                Callable.From(() => GetTree().ChangeSceneToPacked(roomTo)).CallDeferred();
+                Callable.From(() => GetTree().ChangeSceneToPacked(GD.Load<PackedScene>(pathToRoom))).CallDeferred();
             }
         }
     }

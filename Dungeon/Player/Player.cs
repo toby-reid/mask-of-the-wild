@@ -138,7 +138,6 @@ namespace Dungeon
                 }
                 if (canMove)
                 {
-                    sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
                     Velocity = Vector2.Zero;
                 }
             }
@@ -147,6 +146,10 @@ namespace Dungeon
                 Velocity += GetGravity() * (float)delta;
             }
             MoveAndSlide();
+            if (Velocity == Vector2.Zero)
+            {
+                sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
+            }
         }
 
         public bool LockMovement(bool lockIt = true)
