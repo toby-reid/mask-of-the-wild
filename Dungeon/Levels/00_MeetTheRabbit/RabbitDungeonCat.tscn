@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://bq3h3e7mjogf1"]
+[gd_scene load_steps=9 format=4 uid="uid://bq3h3e7mjogf1"]
 
 [ext_resource type="PackedScene" uid="uid://devc7554pqg3k" path="res://Dungeon/Environment/DungeonTiles/DungeonTileMap.tscn" id="1_r8l74"]
 [ext_resource type="PackedScene" uid="uid://bs8dap7eg362j" path="res://Dungeon/Environment/Hazards/Hole/Hole.tscn" id="2_gk6qs"]
 [ext_resource type="PackedScene" uid="uid://dwdi0ht751can" path="res://Dungeon/Meta/ToRoom/ToRoom.tscn" id="3_1hsoj"]
 [ext_resource type="PackedScene" uid="uid://ed8yvb4tubey" path="res://Dungeon/Puzzles/Door/Door.tscn" id="4_mig3o"]
+[ext_resource type="PackedScene" uid="uid://cywqi6iue785i" path="res://Dungeon/Puzzles/DoorButton/Button.tscn" id="5_lmcwg"]
 [ext_resource type="PackedScene" uid="uid://bu46ho5bjst2r" path="res://Dungeon/Puzzles/DoorButton/PopUpButton.tscn" id="5_xxsle"]
 [ext_resource type="PackedScene" uid="uid://cphs5d5t56ov3" path="res://Dungeon/Player/Player.tscn" id="7_xxsle"]
 [ext_resource type="PackedScene" uid="uid://co3ocot7oorkd" path="res://Dungeon/Levels/00_MeetTheRabbit/CopyCat/CopyCat.tscn" id="8_lmcwg"]
@@ -81,9 +82,11 @@ pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonStart.tscn"
 position = Vector2(0, 120)
 rotation = 4.712389
 
-[node name="DoorOpener" parent="Door" instance=ExtResource("5_xxsle")]
-position = Vector2(60, 180)
+[node name="DoorOpener" parent="Door" instance=ExtResource("5_lmcwg")]
+position = Vector2(60.000004, 180)
 rotation = 1.5707964
+
+[node name="ButtonActions" parent="Door/DoorOpener" instance=ExtResource("5_xxsle")]
 
 [node name="ToRoom2" parent="." instance=ExtResource("3_1hsoj")]
 position = Vector2(300, 100)

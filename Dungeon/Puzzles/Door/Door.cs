@@ -42,13 +42,13 @@ namespace Dungeon
 
         private void OpenDoor()
         {
-            collision.Disabled = true;
+            Callable.From(() => collision.Disabled = true).CallDeferred();
             sprite.Visible = false;
         }
 
         private void CloseDoor()
         {
-            collision.Disabled = false;
+            Callable.From(() => collision.Disabled = false).CallDeferred();
             sprite.Visible = true;
         }
     }
