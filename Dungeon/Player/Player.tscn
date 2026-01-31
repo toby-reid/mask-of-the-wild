@@ -1,20 +1,64 @@
-[gd_scene load_steps=5 format=3 uid="uid://cphs5d5t56ov3"]
+[gd_scene load_steps=12 format=3 uid="uid://cphs5d5t56ov3"]
 
-[ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="1_5b0pr"]
 [ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Dungeon/Player/Player.cs" id="1_fx7b5"]
+[ext_resource type="Texture2D" uid="uid://duvhdrkor8kp5" path="res://Dungeon/Player/Assets/spirit_idle_animation.png" id="2_iffwh"]
+[ext_resource type="Texture2D" uid="uid://dutrgw5qr617l" path="res://Dungeon/Player/Assets/spirit_moving_animation.png" id="3_qb87v"]
+[ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="4_1i0ta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kgjk"]
+atlas = ExtResource("2_iffwh")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3tg4"]
+atlas = ExtResource("2_iffwh")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2xim"]
+atlas = ExtResource("2_iffwh")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mivpc"]
+atlas = ExtResource("2_iffwh")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn30y"]
+atlas = ExtResource("3_qb87v")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txwge"]
+atlas = ExtResource("3_qb87v")
+region = Rect2(20, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fx7b5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_5b0pr")
+"texture": SubResource("AtlasTexture_8kgjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3tg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2xim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mivpc")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"idle_right",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn30y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txwge")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 10.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mj4vt"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "moveTimer")]
 script = ExtResource("1_fx7b5")
@@ -22,11 +66,14 @@ sprite = NodePath("AnimatedSprite2D")
 moveTimer = NodePath("Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_fx7b5")
+animation = &"idle_right"
+centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_mj4vt")
+position = Vector2(10, 10)
+shape = ExtResource("4_1i0ta")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true

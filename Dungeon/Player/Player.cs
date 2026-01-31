@@ -6,6 +6,14 @@ namespace Dungeon
 {
     public partial class Player : CharacterBody2D
     {
+        private class Animations
+        {
+            private Animations() {} // prevent instantiation
+
+            public const string IdleRight = "idle_right";
+            public const string RunRight = "run_right";
+        }
+
         [Export]
         public byte TileSize = 20;
 
@@ -23,12 +31,7 @@ namespace Dungeon
         public override void _Ready()
         {
             moveSpeed = 1 / moveTimer.WaitTime;
-        }
-
-        // Called every frame. 'delta' is the elapsed time since the previous frame.
-        public override void _Process(double delta)
-        {
-
+            sprite.Play();
         }
 
         public override void _PhysicsProcess(double delta)
@@ -42,7 +45,6 @@ namespace Dungeon
                     {
                         if (facingDir == moveDir)
                         {
-                            GD.Print(Position);
                             if (TryMove(moveDir))
                             {
                                 isStopped = false;
@@ -55,11 +57,14 @@ namespace Dungeon
                         }
                     }
                 }
+                if (isStopped)
+                {
+                    sprite.Play(Animations.IdleRight);
+                }
             }
             if (!isStopped)
             {
                 MoveAndSlide();
-                GD.Print(Position);
             }
         }
 
@@ -76,6 +81,17 @@ namespace Dungeon
                 moveTimer.Start();
                 double scalar = TileSize * moveSpeed;
                 Velocity = new Vector2((float)(facingDir.X * scalar), (float)(facingDir.Y * scalar));
+
+                if (direction == Vector2.Right)
+                {
+                    sprite.FlipH = false;
+                }
+                else if (direction == Vector2.Left)
+                {
+                    sprite.FlipH = true;
+                }
+                sprite.Play(Animations.RunRight);
+
                 return true;
             }
             return false;
