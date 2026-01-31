@@ -49,8 +49,10 @@ position = Vector2(756, 544)
 
 [node name="DialoguePlaceholder" parent="." instance=ExtResource("6_ueh3d")]
 
-[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder")]
+[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder", "SceneListener")]
 script = ExtResource("7_2oqs2")
-cursorListeners = [NodePath("../BushListener"), NodePath("../RiverListener")]
-cursorStrings = PackedStringArray("This is a Bush", "This would take you down river if I knew what down river looked like... Alas your just stuck on this scene for now")
+cursorListeners = [NodePath("../BushListener")]
+cursorStrings = PackedStringArray("This is a Bush")
 dialoguePlaceholder = NodePath("../DialoguePlaceholder")
+ScenePath = "res://Dungeon/Levels/01_Bridge/BridgeDungeon.tscn"
+SceneListener = NodePath("../RiverListener")
