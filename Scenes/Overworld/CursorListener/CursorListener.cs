@@ -57,11 +57,24 @@ public partial class CursorListener : Area2D
     // Async helper to handle the delay
     private async void SelectCursorTemporarily(Cursor cursor)
     {
+        // Immediately show select state
         cursor.ShowSelect();
 
         // Wait 1 second
         await ToSignal(GetTree().CreateTimer(selectDuration), "timeout");
 
-        cursor.ShowNormal();
+        // SAFETY CHECKS AFTER AWAIT
+        if (!IsInstanceValid(cursor))
+            return;
+
+        // If cursor left the area or another cursor replaced it
+        if (!cursorInside || currentCursor != cursor)
+        {
+            cursor.ShowNormal();
+            return;
+        }
+
+        // Cursor is still inside → selectable
+        cursor.ShowSelectable();
     }
 }
