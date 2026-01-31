@@ -37,3 +37,12 @@ pathToRoom = "res://Scenes/Forest_Scene/River_Scene.tscn"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoom"]
 position = Vector2(10, 40)
 shape = SubResource("RectangleShape2D_udbud")
+
+[node name="ToRoom2" type="Area2D" parent="."]
+position = Vector2(-240, 0)
+script = ExtResource("4_k86c0")
+pathToRoom = "res://Dungeon/Levels/02_End_Screen/End_Screen.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ToRoom2"]
+position = Vector2(470, 40)
+shape = SubResource("RectangleShape2D_udbud")

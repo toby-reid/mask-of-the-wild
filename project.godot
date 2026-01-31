@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Mask of the Wild"
-run/main_scene="uid://c267i7fdblagv"
+run/main_scene="uid://dgw8or5k1v0af"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://12k723tf0q1x"

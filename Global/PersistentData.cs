@@ -7,7 +7,7 @@ namespace Global
     {
         private PersistentData() {}
 
-        public static Masks CurrentMask = Masks.RABBIT;
+        public static Masks CurrentMask = Masks.NONE;
         public static HashSet<Masks> AvailableMasks = [Masks.NONE];
 
         public static Vector2 RoomTransitionDirection = Vector2.Right;
