@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://crq0ovxruc0qq" path="res://Scenes/Overworld/Cursor/Origami'sCursorPlaceholder.png" id="1_x6fvu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wlo0v"]
-radius = 31.0
+radius = 15.132746
 
 [node name="Cursor" type="Node2D" node_paths=PackedStringArray("cursor") groups=["cursor"]]
 script = ExtResource("1_wlo0v")
