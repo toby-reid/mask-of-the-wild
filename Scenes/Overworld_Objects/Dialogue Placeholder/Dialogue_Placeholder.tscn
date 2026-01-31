@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch4dht82ws4v1"]
+
+[ext_resource type="Script" uid="uid://46xeq2nxsc43" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/DialoguePlaceholder.cs" id="1_kdxhl"]
+[ext_resource type="Texture2D" uid="uid://bcw6yvd2mee61" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/DialougeBox.png" id="2_u081j"]
+
+[node name="DialoguePlaceholder" type="Control" node_paths=PackedStringArray("dialogueLabel")]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kdxhl")
+dialogueLabel = NodePath("RichTextLabel")
+CharactersPerSecond = 30.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(480, 48)
+scale = Vector2(3, 3)
+texture = ExtResource("2_u081j")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 15.0
+offset_right = 709.0
+offset_bottom = 79.0
+scale = Vector2(1.198, 1)
+theme_override_colors/default_color = Color(0.096204735, 0.09620475, 0.096204735, 1)
+bbcode_enabled = true
