@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://cfd806uwpa2tg" path="res://Scenes/Overworld_Objects/CursorListener/CursorListener.cs" id="2_2ackq"]
 [ext_resource type="Texture2D" uid="uid://y7rkosvjp81p" path="res://Scenes/Forest_Scene/NormalBush.png" id="2_ysmc7"]
 [ext_resource type="Texture2D" uid="uid://ci7hnk5x0g200" path="res://Scenes/Forest_Scene/glowingBush.png" id="4_4s0je"]
-[ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Overworld/Cursor/Cursor.tscn" id="5_4s0je"]
-[ext_resource type="PackedScene" uid="uid://ch4dht82ws4v1" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="6_ueh3d"]
+[ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Scenes/Overworld_Objects/Cursor/Cursor.tscn" id="5_4s0je"]
+[ext_resource type="PackedScene" path="res://Overworld/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="6_ueh3d"]
 [ext_resource type="Script" uid="uid://dykxxuijhkmv" path="res://Scenes/Overworld_Objects/Placeholders/PlaceHolderCursorEventListener.cs" id="7_2oqs2"]
 [ext_resource type="Script" uid="uid://br2ftcfof5ugb" path="res://Scenes/Overworld_Objects/SceneLoader/SceneLoader.cs" id="8_8j32t"]
 
