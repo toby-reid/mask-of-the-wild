@@ -153,7 +153,7 @@ namespace Dungeon
                 && deerTimer.IsStopped();
         }
 
-        private void FaceDir(Vector2 direction)
+        public void FaceDir(Vector2 direction)
         {
             facingDir = direction;
             if (direction == Vector2.Right)

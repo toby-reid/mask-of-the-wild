@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://bq3h3e7mjogf1"]
+
+[node name="RabbitDungeonCat" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(3, 3)

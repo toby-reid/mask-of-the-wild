@@ -204,7 +204,7 @@ cameraShaker = ExtResource("2_jn30y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fx7b5")
-animation = &"deer_dash_right"
+animation = &"idle_right"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -212,7 +212,7 @@ position = Vector2(10, 10)
 shape = ExtResource("4_1i0ta")
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
 one_shot = true
 
 [node name="ChangeDirectionTimer" type="Timer" parent="."]
