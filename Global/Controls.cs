@@ -22,7 +22,9 @@ namespace Global
         }.ToImmutableDictionary();
 
         public const string ButtonA = "action_a";
+        public const string AcceptButton = ButtonA;
         public const string ButtonB = "action_b";
+        public const string ActionButton = ButtonB;
 
         public const string Start = "start";
         public const string Select = "select";
