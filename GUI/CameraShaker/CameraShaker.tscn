@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://27hnb2e5thlc"]
+
+[ext_resource type="Script" uid="uid://cwu7px5wmdchg" path="res://GUI/CameraShaker/CameraShaker.cs" id="1_f37ie"]
+
+[node name="CameraShaker" type="Node2D"]
+script = ExtResource("1_f37ie")
+
+[node name="Timer" type="Timer" parent="."]
