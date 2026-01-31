@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgw8or5k1v0af"]
+[gd_scene load_steps=11 format=3 uid="uid://dgw8or5k1v0af"]
 
 [ext_resource type="Texture2D" uid="uid://dc3pnrp34nrdy" path="res://Scenes/Forest_Scene/Autumn_River_Bush.png" id="1_4ywu5"]
 [ext_resource type="Script" uid="uid://cfd806uwpa2tg" path="res://Scenes/Overworld_Objects/CursorListener/CursorListener.cs" id="2_2ackq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Overworld/Cursor/Cursor.tscn" id="5_4s0je"]
 [ext_resource type="PackedScene" uid="uid://ch4dht82ws4v1" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="6_ueh3d"]
 [ext_resource type="Script" uid="uid://dykxxuijhkmv" path="res://Scenes/Overworld_Objects/Placeholders/PlaceHolderCursorEventListener.cs" id="7_2oqs2"]
+[ext_resource type="Script" uid="uid://br2ftcfof5ugb" path="res://Scenes/Overworld_Objects/SceneLoader/SceneLoader.cs" id="8_8j32t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4s0je"]
 radius = 916.72
@@ -49,10 +50,13 @@ position = Vector2(756, 544)
 
 [node name="DialoguePlaceholder" parent="." instance=ExtResource("6_ueh3d")]
 
-[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder", "SceneListener")]
+[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder")]
 script = ExtResource("7_2oqs2")
 cursorListeners = [NodePath("../BushListener")]
 cursorStrings = PackedStringArray("This is a Bush")
 dialoguePlaceholder = NodePath("../DialoguePlaceholder")
+
+[node name="RiverDungeonLoader" type="Node2D" parent="." node_paths=PackedStringArray("SceneListener")]
+script = ExtResource("8_8j32t")
 ScenePath = "res://Dungeon/Levels/01_Bridge/BridgeDungeon.tscn"
 SceneListener = NodePath("../RiverListener")
