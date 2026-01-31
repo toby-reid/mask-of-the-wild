@@ -193,9 +193,9 @@ namespace Dungeon
                 targetPos = Position + (Constants.TileSize * FacingDir * 2);
                 double xScalar = Constants.TileSize * MoveSpeed;
                 float ySpeed =
-                    (FacingDir == Vector2.Up) ? -160
-                    : (FacingDir == Vector2.Down) ? -80
-                    : -120;
+                    (FacingDir == Vector2.Up) ? -300
+                    : (FacingDir == Vector2.Down) ? -100
+                    : -200;
                 Velocity = new Vector2((float)(FacingDir.X * xScalar), ySpeed);
                 collisionShape.Disabled = true;
 

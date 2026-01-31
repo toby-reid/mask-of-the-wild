@@ -204,6 +204,7 @@ cameraShaker = ExtResource("2_jn30y")
 collisionShape = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_fx7b5")
 animation = &"idle_right"
 centered = false

@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System.Collections.Generic;
 
 namespace Dungeon
 {
@@ -21,8 +21,7 @@ namespace Dungeon
         public override void _Ready()
         {
             player = GetNode<Player>(playerPath);
-            if (!Global.PersistentData.AvailableMasks.Contains(Global.Masks.RABBIT)
-                || GlobalPosition == player.GlobalPosition)
+            if (Global.PersistentData.AvailableMasks != new HashSet<Global.Masks>{Global.Masks.NONE, Global.Masks.RABBIT})
             {
                 QueueFree();
             }
