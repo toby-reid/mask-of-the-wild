@@ -36,19 +36,24 @@ namespace Dungeon
         }
 
         [Export]
-        public byte TileSize = 20;
-
-        [Export]
         private AnimatedSprite2D sprite; // set in Godot
 
         [Export]
-        private Timer moveTimer; // set in Godot
+        private Timer changeDirectionTimer; // set in Godot
 
         [Export]
-        private Vector2 facingDir = Controls.MoveDir[Controls.MoveRight];
+        public Timer MoveTimer; // set in Godot
+
+        [Export]
+        public Vector2 FacingDir { get; private set; } = Controls.MoveDir[Controls.MoveRight];
 
         [Export]
         private PackedScene cameraShaker; // set in Godot
+
+        [Export]
+        private CollisionShape2D collisionShape; // set in Godot
+
+        public double MoveSpeed { get; private set; }
 
         private Vector2 targetPos;
 
@@ -57,23 +62,25 @@ namespace Dungeon
         private Timer deerTimer;
         private double deerDashSpeed;
 
-        private double moveSpeed;
+        [Export]
+        private bool isMovementLocked = false;
 
         public override void _Ready()
         {
-            moveTimer.Timeout += FixPosition;
-            moveSpeed = 1 / moveTimer.WaitTime;
+            MoveTimer.Timeout += FixPosition;
+            MoveSpeed = 1 / MoveTimer.WaitTime;
 
             rabbitTimer = new();
-            rabbitTimer.WaitTime = moveTimer.WaitTime * 2;
+            rabbitTimer.WaitTime = MoveTimer.WaitTime * 2;
             rabbitTimer.OneShot = true;
             rabbitTimer.Timeout += FixPosition;
+            rabbitTimer.Timeout += () => collisionShape.Disabled = false;
             AddChild(rabbitTimer);
 
             int deerScalar = 5;
-            deerDashSpeed = deerScalar * moveSpeed;
+            deerDashSpeed = deerScalar * MoveSpeed;
             deerTimer = new();
-            deerTimer.WaitTime = moveTimer.WaitTime / deerScalar;
+            deerTimer.WaitTime = MoveTimer.WaitTime / deerScalar;
             deerTimer.OneShot = true;
             deerTimer.Timeout += FixPosition;
             deerTimer.Timeout += () => TryDeerAction(true);
@@ -82,14 +89,14 @@ namespace Dungeon
 
         public override void _PhysicsProcess(double delta)
         {
-            bool canMove = moveTimer.IsStopped() && rabbitTimer.IsStopped() && deerTimer.IsStopped();
-            if (canMove)
+            if (CanMove())
             {
+                bool canMove = true;
                 foreach (var (moveKey, moveDir) in Controls.MoveDir)
                 {
                     if (Input.IsActionPressed(moveKey))
                     {
-                        if (facingDir == moveDir)
+                        if (FacingDir == moveDir)
                         {
                             if (TryMove())
                             {
@@ -100,6 +107,7 @@ namespace Dungeon
                         else
                         {
                             FaceDir(moveDir);
+                            break;
                         }
                     }
                 }
@@ -130,20 +138,39 @@ namespace Dungeon
                 }
                 if (canMove)
                 {
-                    sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
                     Velocity = Vector2.Zero;
                 }
             }
             else if (!rabbitTimer.IsStopped())
             {
-                Velocity += GetGravity();
+                Velocity += GetGravity() * (float)delta;
             }
             MoveAndSlide();
+            if (Velocity == Vector2.Zero)
+            {
+                sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
+            }
         }
 
-        private void FaceDir(Vector2 direction)
+        public bool LockMovement(bool lockIt = true)
         {
-            facingDir = direction;
+            bool wasLocked = isMovementLocked;
+            isMovementLocked = lockIt;
+            return wasLocked;
+        }
+
+        public bool CanMove()
+        {
+            return !isMovementLocked
+                && changeDirectionTimer.IsStopped()
+                && MoveTimer.IsStopped()
+                && rabbitTimer.IsStopped()
+                && deerTimer.IsStopped();
+        }
+
+        public void FaceDir(Vector2 direction)
+        {
+            FacingDir = direction;
             if (direction == Vector2.Right)
             {
                 sprite.FlipH = false;
@@ -152,16 +179,17 @@ namespace Dungeon
             {
                 sprite.FlipH = true;
             }
+            changeDirectionTimer.Start();
         }
 
         private bool TryMove()
         {
-            if (!TestMove(GlobalTransform, facingDir * TileSize))
+            if (!TestMove(GlobalTransform, FacingDir * Constants.TileSize))
             {
-                moveTimer.Start();
-                targetPos = Position + (TileSize * facingDir);
-                double scalar = TileSize * moveSpeed;
-                Velocity = new Vector2((float)(facingDir.X * scalar), (float)(facingDir.Y * scalar));
+                MoveTimer.Start();
+                targetPos = Position + (Constants.TileSize * FacingDir);
+                double scalar = Constants.TileSize * MoveSpeed;
+                Velocity = new Vector2((float)(FacingDir.X * scalar), (float)(FacingDir.Y * scalar));
 
                 sprite.Play(Animations.RunActions[PersistentData.CurrentMask]);
 
@@ -172,16 +200,18 @@ namespace Dungeon
 
         private bool TryRabbitAction()
         {
-            if (!TestMove(GlobalTransform, facingDir * TileSize * 2))
+            Vector2 newPosition = GlobalPosition + (FacingDir * Constants.TileSize * 2);
+            if (IsPositionOnScreen(newPosition) && !TestMove(new Transform2D(GlobalRotation, newPosition), Vector2.Zero))
             {
                 rabbitTimer.Start();
-                targetPos = Position + (TileSize * facingDir * 2);
-                double xScalar = TileSize * moveSpeed;
+                targetPos = Position + (Constants.TileSize * FacingDir * 2);
+                double xScalar = Constants.TileSize * MoveSpeed;
                 float ySpeed =
-                    (facingDir == Vector2.Up) ? -160
-                    : (facingDir == Vector2.Down) ? -80
-                    : -120;
-                Velocity = new Vector2((float)(facingDir.X * xScalar), ySpeed);
+                    (FacingDir == Vector2.Up) ? -300
+                    : (FacingDir == Vector2.Down) ? -100
+                    : -200;
+                Velocity = new Vector2((float)(FacingDir.X * xScalar), ySpeed);
+                collisionShape.Disabled = true;
 
                 sprite.Play(Animations.RabbitJumpRight);
 
@@ -192,12 +222,12 @@ namespace Dungeon
 
         private bool TryDeerAction(bool alreadyDashing = false)
         {
-            if (!TestMove(GlobalTransform, facingDir * TileSize))
+            if (!TestMove(GlobalTransform, FacingDir * Constants.TileSize))
             {
                 deerTimer.Start();
-                targetPos = Position + (TileSize * facingDir);
-                double scalar = TileSize * deerDashSpeed;
-                Velocity = new Vector2((float)(facingDir.X * scalar), (float)(facingDir.Y * scalar));
+                targetPos = Position + (Constants.TileSize * FacingDir);
+                double scalar = Constants.TileSize * deerDashSpeed;
+                Velocity = new Vector2((float)(FacingDir.X * scalar), (float)(FacingDir.Y * scalar));
 
                 if (sprite.Animation != Animations.DeerDashRight)
                 {
@@ -254,8 +284,18 @@ namespace Dungeon
 
         private void FixPosition()
         {
-            Position = targetPos;
-            GD.Print(Position);
+            if (Position.DistanceTo(targetPos) <= Global.Constants.TileSize)
+            {
+                Position = targetPos;
+            }
+        }
+
+        private bool IsPositionOnScreen(Vector2 position)
+        {
+            Camera2D camera = GetViewport().GetCamera2D();
+            Vector2 screenPos = camera.GetCanvasTransform() * (position + camera.GlobalPosition);
+            Rect2 viewportRect = GetViewport().GetVisibleRect();
+            return viewportRect.HasPoint(screenPos);
         }
     }
 }

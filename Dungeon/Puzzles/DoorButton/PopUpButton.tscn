@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu46ho5bjst2r"]
+
+[ext_resource type="Script" uid="uid://cvax87dbhug8h" path="res://Dungeon/Puzzles/DoorButton/PopUpButton.cs" id="1_plom5"]
+[ext_resource type="Texture2D" uid="uid://bcb2h5xwo6e84" path="res://Dungeon/Environment/DungeonTiles/DungeonsAndButtons.png" id="2_36wh3"]
+
+[node name="PopUpButton" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_plom5")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_36wh3")
+centered = false
+hframes = 5
+vframes = 5
+frame = 5
