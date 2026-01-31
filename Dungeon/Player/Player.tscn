@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://cphs5d5t56ov3"]
+[gd_scene load_steps=22 format=3 uid="uid://cphs5d5t56ov3"]
 
 [ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Dungeon/Player/Player.cs" id="1_fx7b5"]
 [ext_resource type="Texture2D" uid="uid://duvhdrkor8kp5" path="res://Dungeon/Player/Assets/spirit_idle_animation.png" id="2_iffwh"]
+[ext_resource type="Texture2D" uid="uid://d1dq4n458oo0m" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_idle_animation.png" id="3_8kgjk"]
 [ext_resource type="Texture2D" uid="uid://dutrgw5qr617l" path="res://Dungeon/Player/Assets/spirit_moving_animation.png" id="3_qb87v"]
 [ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="4_1i0ta"]
+[ext_resource type="Texture2D" uid="uid://qbmpiaocpejc" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_jump_animation.png" id="4_u3tg4"]
+[ext_resource type="Texture2D" uid="uid://bhtssmrb3ubdx" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_walk_animation.png" id="5_y2xim"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kgjk"]
 atlas = ExtResource("2_iffwh")
@@ -20,6 +23,34 @@ region = Rect2(40, 0, 20, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mivpc"]
 atlas = ExtResource("2_iffwh")
 region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4prh8"]
+atlas = ExtResource("3_8kgjk")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhrgm"]
+atlas = ExtResource("3_8kgjk")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvfua"]
+atlas = ExtResource("4_u3tg4")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs5c6"]
+atlas = ExtResource("4_u3tg4")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1u41m"]
+atlas = ExtResource("4_u3tg4")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o84dm"]
+atlas = ExtResource("5_y2xim")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liy81"]
+atlas = ExtResource("5_y2xim")
+region = Rect2(20, 0, 20, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jn30y"]
 atlas = ExtResource("3_qb87v")
@@ -50,6 +81,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4prh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhrgm")
+}],
+"loop": true,
+"name": &"rabbit_idle_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvfua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs5c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1u41m")
+}],
+"loop": false,
+"name": &"rabbit_jump_right",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o84dm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liy81")
+}],
+"loop": true,
+"name": &"rabbit_run_right",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jn30y")
 }, {
 "duration": 1.0,
@@ -67,7 +134,7 @@ moveTimer = NodePath("Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fx7b5")
-animation = &"idle_right"
+animation = &"rabbit_run_right"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
