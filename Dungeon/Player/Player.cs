@@ -50,6 +50,9 @@ namespace Dungeon
         [Export]
         private PackedScene cameraShaker; // set in Godot
 
+        [Export]
+        private CollisionShape2D collisionShape; // set in Godot
+
         public double MoveSpeed { get; private set; }
 
         private Vector2 targetPos;
@@ -68,6 +71,7 @@ namespace Dungeon
             rabbitTimer.WaitTime = MoveTimer.WaitTime * 2;
             rabbitTimer.OneShot = true;
             rabbitTimer.Timeout += FixPosition;
+            rabbitTimer.Timeout += () => collisionShape.Disabled = false;
             AddChild(rabbitTimer);
 
             int deerScalar = 5;
@@ -193,6 +197,7 @@ namespace Dungeon
                     : (FacingDir == Vector2.Down) ? -80
                     : -120;
                 Velocity = new Vector2((float)(FacingDir.X * xScalar), ySpeed);
+                collisionShape.Disabled = true;
 
                 sprite.Play(Animations.RabbitJumpRight);
 
