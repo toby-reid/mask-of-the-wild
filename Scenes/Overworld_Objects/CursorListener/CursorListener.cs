@@ -6,8 +6,8 @@ public partial class CursorListener : Area2D
 {
     [Export] public float selectDuration = .25f;
 
-    private Cursor currentCursor = null;
-    private bool cursorInside = false;
+    protected Cursor currentCursor = null;
+    protected bool cursorInside = false;
 
     // Textures that can change if the cursor moves over them
     [Export] public Sprite2D sprite = null;
@@ -22,7 +22,7 @@ public partial class CursorListener : Area2D
         AreaExited += OnAreaExited;
     }
 
-    private void OnAreaEntered(Area2D area)
+    protected void OnAreaEntered(Area2D area)
     {
         if (area.IsInGroup("cursor"))
         {
@@ -33,7 +33,7 @@ public partial class CursorListener : Area2D
         }
     }
 
-    private void OnAreaExited(Area2D area)
+    protected void OnAreaExited(Area2D area)
     {
         if (area.IsInGroup("cursor"))
         {
@@ -63,12 +63,12 @@ public partial class CursorListener : Area2D
             if (currentCursor != null)
                 SelectCursorTemporarily(currentCursor);
 
-            OnClicked?.Invoke(this, EventArgs.Empty);
+            RaiseClicked();
         }
     }
 
     // Async helper to handle the delay
-    private async void SelectCursorTemporarily(Cursor cursor)
+    protected virtual async void SelectCursorTemporarily(Cursor cursor)
     {
         // Immediately show select state
         cursor.ShowSelect();
@@ -89,5 +89,9 @@ public partial class CursorListener : Area2D
 
         // Cursor is still inside → selectable
         cursor.ShowSelectable();
+    }
+    protected void RaiseClicked()
+    {
+        OnClicked?.Invoke(this, EventArgs.Empty);
     }
 }

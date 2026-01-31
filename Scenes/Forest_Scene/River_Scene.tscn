@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ci7hnk5x0g200" path="res://Scenes/Forest_Scene/glowingBush.png" id="4_4s0je"]
 [ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Scenes/Overworld_Objects/Cursor/Cursor.tscn" id="5_4s0je"]
 [ext_resource type="PackedScene" uid="uid://ch4dht82ws4v1" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="6_ueh3d"]
-[ext_resource type="Script" uid="uid://dykxxuijhkmv" path="res://Scenes/Overworld_Objects/Placeholders/PlaceHolderCursorEventListener.cs" id="7_2oqs2"]
-[ext_resource type="Script" uid="uid://br2ftcfof5ugb" path="res://Scenes/Overworld_Objects/SceneLoader/SceneLoader.cs" id="8_8j32t"]
+[ext_resource type="Script" uid="uid://dyjcw3qj7lkvp" path="res://Scenes/Overworld_Objects/Placeholders/BushListenerEvent.cs" id="7_8j32t"]
+[ext_resource type="Script" uid="uid://d2xynnhq5grm2" path="res://Scenes/Overworld_Objects/SceneLoader/RiverSceneLoader.cs" id="8_lvllo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4s0je"]
 radius = 916.72
@@ -50,13 +50,14 @@ position = Vector2(756, 544)
 
 [node name="DialoguePlaceholder" parent="." instance=ExtResource("6_ueh3d")]
 
-[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder")]
-script = ExtResource("7_2oqs2")
-cursorListeners = [NodePath("../BushListener")]
-cursorStrings = PackedStringArray("This is a Bush")
+[node name="BushDungeonLoader" type="Node2D" parent="." node_paths=PackedStringArray("bushListener", "dialoguePlaceholder")]
+script = ExtResource("7_8j32t")
+bushListener = NodePath("../BushListener")
+bushText = "This is a bush"
 dialoguePlaceholder = NodePath("../DialoguePlaceholder")
+bushDungeonScenePath = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonStart.tscn"
 
 [node name="RiverDungeonLoader" type="Node2D" parent="." node_paths=PackedStringArray("SceneListener")]
-script = ExtResource("8_8j32t")
+script = ExtResource("8_lvllo")
 ScenePath = "res://Dungeon/Levels/01_Bridge/BridgeDungeon.tscn"
 SceneListener = NodePath("../RiverListener")

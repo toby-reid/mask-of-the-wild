@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Security.Cryptography.X509Certificates;
 
-public partial class SceneLoader : Node2D
+public partial class RiverSceneLoader : Node2D
 {
     [Export] public string ScenePath;
     [Export] public CursorListener SceneListener;
@@ -21,6 +21,7 @@ public partial class SceneLoader : Node2D
         {
             // Change scene
             GetTree().ChangeSceneToFile(ScenePath);
+            GameState.isRiverVisited = true;
         }
     }
 
