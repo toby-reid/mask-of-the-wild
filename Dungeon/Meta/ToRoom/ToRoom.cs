@@ -31,7 +31,7 @@ namespace Dungeon
             if (body is Player)
             {
                 Global.PersistentData.RoomTransitionDirection = direction;
-                GetTree().ChangeSceneToPacked(roomTo);
+                Callable.From(() => GetTree().ChangeSceneToPacked(roomTo)).CallDeferred();
             }
         }
     }

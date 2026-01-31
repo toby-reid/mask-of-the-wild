@@ -195,11 +195,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "changeDirectionTimer", "moveTimer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "changeDirectionTimer", "MoveTimer")]
 script = ExtResource("1_fx7b5")
 sprite = NodePath("AnimatedSprite2D")
 changeDirectionTimer = NodePath("ChangeDirectionTimer")
-moveTimer = NodePath("MoveTimer")
+MoveTimer = NodePath("MoveTimer")
 cameraShaker = ExtResource("2_jn30y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

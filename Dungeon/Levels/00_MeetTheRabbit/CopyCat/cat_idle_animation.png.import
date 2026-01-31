@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://h0rwa7blueri"
-path="res://.godot/imported/DungeonTileSet.png-f4cb10aa637dfe29e3f09560378f6d78.ctex"
+uid="uid://clfuld5su1ia8"
+path="res://.godot/imported/cat_idle_animation.png-30c81f732240b8134c73f2f52dc952dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dungeon/Environment/DungeonTiles/DungeonTileSet.png"
-dest_files=["res://.godot/imported/DungeonTileSet.png-f4cb10aa637dfe29e3f09560378f6d78.ctex"]
+source_file="res://Dungeon/Levels/00_MeetTheRabbit/CopyCat/cat_idle_animation.png"
+dest_files=["res://.godot/imported/cat_idle_animation.png-30c81f732240b8134c73f2f52dc952dd.ctex"]
 
 [params]
 
