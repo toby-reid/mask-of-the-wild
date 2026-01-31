@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+
 namespace Global
 {
     public class PersistentData
     {
         private PersistentData() {}
 
-        public static Masks CurrentMask = Masks.RABBIT;
+        public static Masks CurrentMask = Masks.NONE;
+        public static HashSet<Masks> AvailableMasks = [Masks.NONE, Masks.RABBIT];
     }
 }

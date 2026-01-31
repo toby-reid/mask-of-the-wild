@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Global;
@@ -96,6 +97,10 @@ namespace Dungeon
                         // TODO: Implement other masks
                     }
                 }
+                if (canMove && Input.IsActionJustPressed(Controls.Select))
+                {
+                    SelectNextMask();
+                }
                 if (canMove)
                 {
                     sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
@@ -154,6 +159,29 @@ namespace Dungeon
                 sprite.Play(Animations.RabbitJumpRight);
 
                 return true;
+            }
+            return false;
+        }
+
+        private static bool SelectNextMask()
+        {
+            Masks currentMask = PersistentData.CurrentMask;
+            Masks[] masks = Enum.GetValues<Masks>();
+            foreach (Masks mask in masks[((int)currentMask + 1)..])
+            {
+                if (PersistentData.AvailableMasks.Contains(mask))
+                {
+                    PersistentData.CurrentMask = mask;
+                    return true;
+                }
+            }
+            foreach (Masks mask in masks[..(int)currentMask])
+            {
+                if (PersistentData.AvailableMasks.Contains(mask))
+                {
+                    PersistentData.CurrentMask = mask;
+                    return true;
+                }
             }
             return false;
         }
