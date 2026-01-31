@@ -1,18 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://cphs5d5t56ov3"]
+[gd_scene load_steps=5 format=3 uid="uid://cphs5d5t56ov3"]
 
 [ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="1_5b0pr"]
 [ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Scenes/Dungeon/Player/Player.cs" id="1_fx7b5"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_fx7b5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5b0pr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mj4vt"]
-size = Vector2(116, 114)
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "moveTimer")]
 script = ExtResource("1_fx7b5")
+sprite = NodePath("AnimatedSprite2D")
+moveTimer = NodePath("Timer")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_5b0pr")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.15, 0.15)
+sprite_frames = SubResource("SpriteFrames_fx7b5")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_mj4vt")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
