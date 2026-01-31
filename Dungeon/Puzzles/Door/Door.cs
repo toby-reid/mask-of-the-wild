@@ -15,9 +15,6 @@ namespace Dungeon
 
     public partial class Door : StaticBody2D
     {
-        private const string OpenAnimation = "open_door";
-        private const string CloseAnimation = "close_door";
-
         [Export]
         private string doorOpenerName = "DoorOpener"; // set when this object is used
 
@@ -28,7 +25,7 @@ namespace Dungeon
         private CollisionShape2D collision; // set in Godot
 
         [Export]
-        private AnimatedSprite2D sprite;
+        private Sprite2D sprite;
 
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
@@ -46,13 +43,13 @@ namespace Dungeon
         private void OpenDoor()
         {
             collision.Disabled = true;
-            sprite.Play(OpenAnimation);
+            sprite.Visible = false;
         }
 
         private void CloseDoor()
         {
             collision.Disabled = false;
-            sprite.Play(CloseAnimation);
+            sprite.Visible = true;
         }
     }
 }

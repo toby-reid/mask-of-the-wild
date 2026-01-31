@@ -1,14 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://c375qwpld77p4"]
 
 [ext_resource type="Script" uid="uid://cipxjodmn3t3w" path="res://Dungeon/Puzzles/DoorButton/TimerButton.cs" id="1_iigc5"]
-[ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="2_gopom"]
+[ext_resource type="Texture2D" uid="uid://bcb2h5xwo6e84" path="res://Dungeon/Environment/DungeonTiles/DungeonsAndButtons.png" id="2_gopom"]
 
-[node name="TimerButton" type="Timer"]
+[node name="TimerButton" type="Timer" node_paths=PackedStringArray("sprite")]
 one_shot = true
 script = ExtResource("1_iigc5")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.15624999, 0.15624999)
 texture = ExtResource("2_gopom")
 centered = false
-hframes = 2
+hframes = 5
+vframes = 5
+frame = 10

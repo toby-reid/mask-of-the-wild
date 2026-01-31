@@ -17,11 +17,11 @@ namespace Dungeon
         // Called when the node enters the scene tree for the first time.
         public override void _Ready()
         {
-            if (Global.PersistentData.RoomTransitionDirection == direction)
+            if (Global.PersistentData.RoomTransitionDirection == -direction)
             {
                 Player player = GetNode<Player>(pathToPlayer);
-                player.GlobalPosition = GlobalPosition + (Global.Constants.TileSize * direction);
-                player.FaceDir(direction);
+                player.GlobalPosition = GlobalPosition + (Global.Constants.TileSize * Global.PersistentData.RoomTransitionDirection);
+                player.FaceDir(Global.PersistentData.RoomTransitionDirection);
             }
             BodyEntered += OnBodyEntered;
         }
@@ -30,6 +30,7 @@ namespace Dungeon
         {
             if (body is Player)
             {
+                Global.PersistentData.RoomTransitionDirection = direction;
                 GetTree().ChangeSceneToPacked(roomTo);
             }
         }

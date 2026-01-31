@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs8dap7eg362j"]
+
+[ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="1_qtgb0"]
+[ext_resource type="Texture2D" uid="uid://dwkls626arg3k" path="res://Dungeon/Environment/Hazards/Hole/Hole.png" id="2_0l6p6"]
+
+[node name="Hole" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = ExtResource("1_qtgb0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0l6p6")
+centered = false

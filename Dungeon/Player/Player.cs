@@ -268,7 +268,6 @@ namespace Dungeon
         private void FixPosition()
         {
             Position = targetPos;
-            GD.Print(Position);
         }
     }
 }
