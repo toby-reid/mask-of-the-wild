@@ -37,6 +37,7 @@ offset_left = -481.0
 offset_top = -360.0
 offset_right = -481.0
 offset_bottom = -360.0
+CharactersPerSecond = 30.0
 
 [node name="Button" type="Area2D" parent="."]
 position = Vector2(306, 243)
