@@ -70,7 +70,7 @@ namespace Dungeon
             rabbitTimer.Timeout += FixPosition;
             AddChild(rabbitTimer);
 
-            int deerScalar = 4;
+            int deerScalar = 5;
             deerDashSpeed = deerScalar * moveSpeed;
             deerTimer = new();
             deerTimer.WaitTime = moveTimer.WaitTime / deerScalar;
