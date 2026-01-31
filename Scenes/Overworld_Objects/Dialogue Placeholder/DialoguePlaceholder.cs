@@ -41,7 +41,7 @@ public partial class DialoguePlaceholder : Control
 
         }
         // Wait for player confirmation
-        if (Input.IsActionJustPressed("click") && GameState.IsDialogueActive)
+        if (Input.IsActionJustPressed(Global.Controls.AcceptButton) && GameState.IsDialogueActive)
         {
             if (_waitingForClick)
             {

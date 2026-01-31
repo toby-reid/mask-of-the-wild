@@ -16,10 +16,10 @@ public partial class Cursor : Node2D
 		if (GameState.IsDialogueActive)
 			return;
 
-		if (Input.IsActionPressed("ui_up")) input.Y -= 1;
-		if (Input.IsActionPressed("ui_down")) input.Y += 1;
-		if (Input.IsActionPressed("ui_left")) input.X -= 1;
-		if (Input.IsActionPressed("ui_right")) input.X += 1;
+		if (Input.IsActionPressed(Global.Controls.MoveUp)) input.Y -= 1;
+		if (Input.IsActionPressed(Global.Controls.MoveDown)) input.Y += 1;
+		if (Input.IsActionPressed(Global.Controls.MoveLeft)) input.X -= 1;
+		if (Input.IsActionPressed(Global.Controls.MoveRight)) input.X += 1;
 
 		if (input != Vector2.Zero)
 		{

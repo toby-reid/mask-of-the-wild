@@ -58,7 +58,7 @@ public partial class CursorListener : Area2D
             }
         }
 
-        if (cursorInside && !GameState.IsDialogueActive && Input.IsActionJustPressed("click"))
+        if (cursorInside && !GameState.IsDialogueActive && Input.IsActionJustPressed(Global.Controls.AcceptButton))
         {
             if (currentCursor != null)
                 SelectCursorTemporarily(currentCursor);
