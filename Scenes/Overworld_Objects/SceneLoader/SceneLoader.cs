@@ -21,7 +21,6 @@ public partial class SceneLoader : Node2D
             return;
         if (clickedListener == SceneListener)
         {
-            Global.PersistentData.RoomTransitionDirection = Vector2.Right;
             // Change scene
             GetTree().ChangeSceneToFile(ScenePath);
             if (isRiverDungeon)
