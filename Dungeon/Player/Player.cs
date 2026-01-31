@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using Global;
 using Godot;
 
@@ -15,6 +17,15 @@ namespace Dungeon
             public const string RabbitIdleRight = "rabbit_idle_right";
             public const string RabbitRunRight = "rabbit_run_right";
             public const string RabbitJumpRight = "rabbit_jump_right";
+
+            public static readonly ImmutableDictionary<Masks, string> IdleActions = new Dictionary<Masks, string>{
+                {Masks.NONE, IdleRight},
+                {Masks.RABBIT, RabbitIdleRight},
+            }.ToImmutableDictionary();
+            public static readonly ImmutableDictionary<Masks, string> RunActions = new Dictionary<Masks, string>{
+                {Masks.NONE, RunRight},
+                {Masks.RABBIT, RabbitRunRight},
+            }.ToImmutableDictionary();
         }
 
         [Export]
@@ -87,7 +98,7 @@ namespace Dungeon
                 }
                 if (canMove)
                 {
-                    sprite.Play(Animations.IdleRight);
+                    sprite.Play(Animations.IdleActions[PersistentData.CurrentMask]);
                     Velocity = Vector2.Zero;
                 }
             }
@@ -120,7 +131,7 @@ namespace Dungeon
                 double scalar = TileSize * moveSpeed;
                 Velocity = new Vector2((float)(facingDir.X * scalar), (float)(facingDir.Y * scalar));
 
-                sprite.Play(Animations.RunRight);
+                sprite.Play(Animations.RunActions[PersistentData.CurrentMask]);
 
                 return true;
             }
@@ -136,7 +147,7 @@ namespace Dungeon
                 double xScalar = TileSize * moveSpeed;
                 float ySpeed =
                     (facingDir == Vector2.Up) ? -160
-                    : (facingDir == Vector2.Down) ? -84
+                    : (facingDir == Vector2.Down) ? -80
                     : -120;
                 Velocity = new Vector2((float)(facingDir.X * xScalar), ySpeed);
 

@@ -113,7 +113,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"rabbit_run_right",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -134,7 +134,7 @@ moveTimer = NodePath("Timer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fx7b5")
-animation = &"idle_right"
+animation = &"rabbit_run_right"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
