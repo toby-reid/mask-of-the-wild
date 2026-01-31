@@ -92,6 +92,7 @@ public partial class CursorListener : Area2D
     }
     protected void RaiseClicked()
     {
+        Global.PersistentData.RoomTransitionDirection = Vector2.Right;
         OnClicked?.Invoke(this, EventArgs.Empty);
     }
 }
