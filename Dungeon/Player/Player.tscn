@@ -1,12 +1,44 @@
-[gd_scene load_steps=22 format=3 uid="uid://cphs5d5t56ov3"]
+[gd_scene load_steps=33 format=3 uid="uid://cphs5d5t56ov3"]
 
 [ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Dungeon/Player/Player.cs" id="1_fx7b5"]
 [ext_resource type="Texture2D" uid="uid://duvhdrkor8kp5" path="res://Dungeon/Player/Assets/spirit_idle_animation.png" id="2_iffwh"]
+[ext_resource type="PackedScene" uid="uid://27hnb2e5thlc" path="res://GUI/CameraShaker/CameraShaker.tscn" id="2_jn30y"]
+[ext_resource type="Texture2D" uid="uid://chr5vucepsvgf" path="res://Dungeon/Player/Assets/Deer/spirit_deer_sprint_animation.png" id="2_mivpc"]
+[ext_resource type="Texture2D" uid="uid://23ek636qo40" path="res://Dungeon/Player/Assets/Deer/spirit_deer_walking_animation.png" id="2_u3tg4"]
 [ext_resource type="Texture2D" uid="uid://d1dq4n458oo0m" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_idle_animation.png" id="3_8kgjk"]
+[ext_resource type="Texture2D" uid="uid://dxbryjnokg43" path="res://Dungeon/Player/Assets/Deer/spirit_deer_idle_animation.png" id="3_jn30y"]
 [ext_resource type="Texture2D" uid="uid://dutrgw5qr617l" path="res://Dungeon/Player/Assets/spirit_moving_animation.png" id="3_qb87v"]
 [ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="4_1i0ta"]
 [ext_resource type="Texture2D" uid="uid://qbmpiaocpejc" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_jump_animation.png" id="4_u3tg4"]
 [ext_resource type="Texture2D" uid="uid://bhtssmrb3ubdx" path="res://Dungeon/Player/Assets/Rabbit/spirit_rabbit_walk_animation.png" id="5_y2xim"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5i4e"]
+atlas = ExtResource("2_mivpc")
+region = Rect2(30, 0, 30, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32vji"]
+atlas = ExtResource("3_jn30y")
+region = Rect2(0, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae0o4"]
+atlas = ExtResource("3_jn30y")
+region = Rect2(20, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_522og"]
+atlas = ExtResource("2_u3tg4")
+region = Rect2(0, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xks8k"]
+atlas = ExtResource("2_u3tg4")
+region = Rect2(20, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy3n6"]
+atlas = ExtResource("2_u3tg4")
+region = Rect2(40, 0, 20, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgiql"]
+atlas = ExtResource("2_u3tg4")
+region = Rect2(60, 0, 20, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8kgjk"]
 atlas = ExtResource("2_iffwh")
@@ -62,6 +94,42 @@ region = Rect2(20, 0, 20, 20)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fx7b5"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5i4e")
+}],
+"loop": false,
+"name": &"deer_dash_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32vji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae0o4")
+}],
+"loop": true,
+"name": &"deer_idle_right",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_522og")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xks8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy3n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgiql")
+}],
+"loop": true,
+"name": &"deer_run_right",
+"speed": 4.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8kgjk")
@@ -131,10 +199,11 @@ animations = [{
 script = ExtResource("1_fx7b5")
 sprite = NodePath("AnimatedSprite2D")
 moveTimer = NodePath("Timer")
+cameraShaker = ExtResource("2_jn30y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fx7b5")
-animation = &"rabbit_run_right"
+animation = &"deer_dash_right"
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

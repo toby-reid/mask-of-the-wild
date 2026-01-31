@@ -7,6 +7,6 @@ namespace Global
         private PersistentData() {}
 
         public static Masks CurrentMask = Masks.NONE;
-        public static HashSet<Masks> AvailableMasks = [Masks.NONE, Masks.RABBIT];
+        public static HashSet<Masks> AvailableMasks = [Masks.NONE, Masks.RABBIT, Masks.DEER];
     }
 }

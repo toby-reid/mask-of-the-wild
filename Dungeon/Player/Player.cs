@@ -19,13 +19,19 @@ namespace Dungeon
             public const string RabbitRunRight = "rabbit_run_right";
             public const string RabbitJumpRight = "rabbit_jump_right";
 
+            public const string DeerIdleRight = "deer_idle_right";
+            public const string DeerRunRight = "deer_run_right";
+            public const string DeerDashRight = "deer_dash_right";
+
             public static readonly ImmutableDictionary<Masks, string> IdleActions = new Dictionary<Masks, string>{
                 {Masks.NONE, IdleRight},
                 {Masks.RABBIT, RabbitIdleRight},
+                {Masks.DEER, DeerIdleRight},
             }.ToImmutableDictionary();
             public static readonly ImmutableDictionary<Masks, string> RunActions = new Dictionary<Masks, string>{
                 {Masks.NONE, RunRight},
                 {Masks.RABBIT, RabbitRunRight},
+                {Masks.DEER, DeerRunRight},
             }.ToImmutableDictionary();
         }
 
@@ -41,27 +47,42 @@ namespace Dungeon
         [Export]
         private Vector2 facingDir = Controls.MoveDir[Controls.MoveRight];
 
+        [Export]
+        private PackedScene cameraShaker; // set in Godot
+
         private Vector2 targetPos;
 
         private Timer rabbitTimer;
+
+        private Timer deerTimer;
+        private double deerDashSpeed;
 
         private double moveSpeed;
 
         public override void _Ready()
         {
             moveTimer.Timeout += FixPosition;
+            moveSpeed = 1 / moveTimer.WaitTime;
+
             rabbitTimer = new();
             rabbitTimer.WaitTime = moveTimer.WaitTime * 2;
             rabbitTimer.OneShot = true;
             rabbitTimer.Timeout += FixPosition;
             AddChild(rabbitTimer);
-            moveSpeed = 1 / moveTimer.WaitTime;
-            sprite.Play();
+
+            int deerScalar = 4;
+            deerDashSpeed = deerScalar * moveSpeed;
+            deerTimer = new();
+            deerTimer.WaitTime = moveTimer.WaitTime / deerScalar;
+            deerTimer.OneShot = true;
+            deerTimer.Timeout += FixPosition;
+            deerTimer.Timeout += () => TryDeerAction(true);
+            AddChild(deerTimer);
         }
 
         public override void _PhysicsProcess(double delta)
         {
-            bool canMove = moveTimer.IsStopped() && rabbitTimer.IsStopped();
+            bool canMove = moveTimer.IsStopped() && rabbitTimer.IsStopped() && deerTimer.IsStopped();
             if (canMove)
             {
                 foreach (var (moveKey, moveDir) in Controls.MoveDir)
@@ -90,6 +111,12 @@ namespace Dungeon
                             break;
                         case Masks.RABBIT:
                             if (TryRabbitAction())
+                            {
+                                canMove = false;
+                            }
+                            break;
+                        case Masks.DEER:
+                            if (TryDeerAction())
                             {
                                 canMove = false;
                             }
@@ -163,25 +190,64 @@ namespace Dungeon
             return false;
         }
 
-        private static bool SelectNextMask()
+        private bool TryDeerAction(bool alreadyDashing = false)
+        {
+            if (!TestMove(GlobalTransform, facingDir * TileSize))
+            {
+                deerTimer.Start();
+                targetPos = Position + (TileSize * facingDir);
+                double scalar = TileSize * deerDashSpeed;
+                Velocity = new Vector2((float)(facingDir.X * scalar), (float)(facingDir.Y * scalar));
+
+                if (sprite.Animation != Animations.DeerDashRight)
+                {
+                    sprite.Play(Animations.DeerDashRight);
+                }
+
+                return true;
+            }
+            if (alreadyDashing)
+            {
+                AddChild(cameraShaker.Instantiate());
+            }
+            return false;
+        }
+
+        private bool SelectNextMask()
         {
             Masks currentMask = PersistentData.CurrentMask;
             Masks[] masks = Enum.GetValues<Masks>();
             foreach (Masks mask in masks[((int)currentMask + 1)..])
             {
-                if (PersistentData.AvailableMasks.Contains(mask))
+                if (SetMask(mask))
                 {
-                    PersistentData.CurrentMask = mask;
                     return true;
                 }
             }
             foreach (Masks mask in masks[..(int)currentMask])
             {
-                if (PersistentData.AvailableMasks.Contains(mask))
+                if (SetMask(mask))
                 {
-                    PersistentData.CurrentMask = mask;
                     return true;
                 }
+            }
+            return false;
+        }
+
+        private bool SetMask(Masks mask)
+        {
+            if (PersistentData.AvailableMasks.Contains(mask))
+            {
+                PersistentData.CurrentMask = mask;
+                if (mask == Masks.DEER)
+                {
+                    sprite.Offset = new(0, -10);
+                }
+                else
+                {
+                    sprite.Offset = Vector2.Zero;
+                }
+                return true;
             }
             return false;
         }

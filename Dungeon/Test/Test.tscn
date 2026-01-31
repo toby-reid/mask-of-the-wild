@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cygcro3t8e55d"]
+
+[ext_resource type="PackedScene" uid="uid://cphs5d5t56ov3" path="res://Dungeon/Player/Player.tscn" id="1_tvk6a"]
+[ext_resource type="PackedScene" uid="uid://bwsoisdcc2dlw" path="res://Dungeon/Test/Collision.tscn" id="2_c2it0"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_tvk6a")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Collision" parent="." instance=ExtResource("2_c2it0")]
+position = Vector2(93, 30)
+
+[node name="Collision2" parent="." instance=ExtResource("2_c2it0")]
+position = Vector2(-105, 31)
+
+[node name="Collision3" parent="." instance=ExtResource("2_c2it0")]
+position = Vector2(-44, -86)
+
+[node name="Collision4" parent="." instance=ExtResource("2_c2it0")]
+position = Vector2(105, -83)
