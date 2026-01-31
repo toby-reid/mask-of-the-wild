@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://12k723tf0q1x"]
+
+[ext_resource type="Script" uid="uid://dykxxuijhkmv" path="res://Scenes/Overworld/Placeholders/PlaceHolderCursorEventListener.cs" id="1_mjq2l"]
+[ext_resource type="PackedScene" uid="uid://ma22mnvfg3xx" path="res://Scenes/Overworld/Placeholders/PlayerPlaceholder.tscn" id="1_rwni4"]
+[ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Scenes/Overworld/Cursor/Cursor.tscn" id="2_mjq2l"]
+[ext_resource type="PackedScene" uid="uid://chrsygstjwlk4" path="res://Scenes/Overworld/CursorListener/CursorListener.tscn" id="3_e3mrl"]
+[ext_resource type="PackedScene" uid="uid://ch4dht82ws4v1" path="res://Scenes/Overworld/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="5_e3mrl"]
+
+[node name="OverworldPlaceholder" type="Node2D"]
+
+[node name="CursorListener" parent="." instance=ExtResource("3_e3mrl")]
+position = Vector2(-131, -15)
+
+[node name="CursorListener2" parent="." instance=ExtResource("3_e3mrl")]
+position = Vector2(233, -126)
+
+[node name="PlayerPlaceholder" parent="." instance=ExtResource("1_rwni4")]
+position = Vector2(6, 1)
+
+[node name="Cursor" parent="PlayerPlaceholder" instance=ExtResource("2_mjq2l")]
+MinBounds = Vector2(-460, -350)
+MaxBounds = Vector2(460, 350)
+
+[node name="TheListenerForTheListener" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder")]
+script = ExtResource("1_mjq2l")
+cursorListeners = [NodePath("../CursorListener"), NodePath("../CursorListener2")]
+cursorStrings = PackedStringArray("This is a box", "This is another box")
+dialoguePlaceholder = NodePath("../DialoguePlaceholder")
+
+[node name="DialoguePlaceholder" parent="." instance=ExtResource("5_e3mrl")]
+offset_left = -474.0
+offset_top = -358.0
+offset_right = -474.0
+offset_bottom = -358.0

@@ -1,18 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://by1aq0ide5kqd"]
+[gd_scene load_steps=4 format=3 uid="uid://by1aq0ide5kqd"]
 
-[ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="1_x6fvu"]
+[ext_resource type="Script" uid="uid://cum14vdk7ffp2" path="res://Scenes/Overworld/Cursor/Cursor.cs" id="1_wlo0v"]
+[ext_resource type="Texture2D" uid="uid://crq0ovxruc0qq" path="res://Scenes/Overworld/Cursor/Origami'sCursorPlaceholder.png" id="1_x6fvu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wlo0v"]
-radius = 31.0
+radius = 15.132746
 
-[node name="Cursor" type="Node2D"]
+[node name="Cursor" type="Node2D" node_paths=PackedStringArray("cursor") groups=["cursor"]]
+script = ExtResource("1_wlo0v")
+cursor = NodePath("Sprite2D")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["cursor"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(19, 17)
 shape = SubResource("CircleShape2D_wlo0v")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["cursor"]]
+position = Vector2(-16, -16)
 texture = ExtResource("1_x6fvu")
 centered = false
+hframes = 2
+vframes = 2
