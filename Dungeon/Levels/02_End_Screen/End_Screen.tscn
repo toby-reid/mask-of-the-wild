@@ -30,7 +30,7 @@ Jack Mortensen - Overworld Art
 Emma Jacobson - Character Design & Art
 Tyler Jackson - Tiles & Level Design
 Vincent Climer - Overworld Programming
-Toby Reid - Supreme Leader and Best Boy (jk, just say Dungeon Programming)"
+Toby Reid - Supreme Leader, Dungeon Programming, & Best Boy"
 
 [node name="BigDialouge" parent="." instance=ExtResource("3_wbe2p")]
 offset_left = -481.0
