@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwdi0ht751can"]
+
+[ext_resource type="Script" uid="uid://bh1knuny0yatx" path="res://Dungeon/Meta/ToRoom/ToRoom.cs" id="1_hjble"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jede5"]
+size = Vector2(4, 4)
+
+[node name="ToRoom" type="Area2D"]
+script = ExtResource("1_hjble")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_jede5")

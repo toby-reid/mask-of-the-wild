@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://ed8yvb4tubey"]
+
+[ext_resource type="Script" uid="uid://dmfaid0550mqx" path="res://Dungeon/Puzzles/Door/Door.cs" id="1_rbyj0"]
+[ext_resource type="Shape2D" uid="uid://q58lsyt8sa6e" path="res://Global/1TileCollision.tres" id="2_gy2w4"]
+[ext_resource type="Texture2D" uid="uid://c2r0k7sdypck8" path="res://Dungeon/Environment/DungeonTiles/DoorwayAndDoor.png" id="3_rbyj0"]
+
+[node name="Door" type="StaticBody2D" node_paths=PackedStringArray("collision", "sprite")]
+script = ExtResource("1_rbyj0")
+collision = NodePath("CollisionShape2D")
+sprite = NodePath("Sprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 10)
+shape = ExtResource("2_gy2w4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_rbyj0")
+centered = false
+region_enabled = true
+region_rect = Rect2(40, 0, 20, 20)

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://di1whgsbtgif8"]
+
+[ext_resource type="Script" uid="uid://fwq81a1adgpb" path="res://Dungeon/Meta/DialogueBox/DrawTextBox.cs" id="1_chy6q"]
+[ext_resource type="Script" uid="uid://bhodqya55n0ar" path="res://Dungeon/Meta/DialogueBox/DialogueBox.cs" id="1_kqwxg"]
+
+[sub_resource type="SystemFont" id="SystemFont_jawsm"]
+font_names = PackedStringArray("Monospace")
+font_weight = 800
+
+[sub_resource type="LabelSettings" id="LabelSettings_48mqo"]
+font = SubResource("SystemFont_jawsm")
+font_size = 32
+
+[node name="DialogueBox" type="Node2D" node_paths=PackedStringArray("textArea")]
+script = ExtResource("1_kqwxg")
+textArea = NodePath("CanvasLayer/TextBox/Label")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextBox" type="Node2D" parent="CanvasLayer" node_paths=PackedStringArray("text")]
+script = ExtResource("1_chy6q")
+text = NodePath("Label")
+
+[node name="Label" type="Label" parent="CanvasLayer/TextBox"]
+z_index = 1
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_48mqo")
