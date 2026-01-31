@@ -62,6 +62,9 @@ namespace Dungeon
         private Timer deerTimer;
         private double deerDashSpeed;
 
+        [Export]
+        private bool isMovementLocked = false;
+
         public override void _Ready()
         {
             MoveTimer.Timeout += FixPosition;
@@ -146,9 +149,17 @@ namespace Dungeon
             MoveAndSlide();
         }
 
+        public bool LockMovement(bool lockIt = true)
+        {
+            bool wasLocked = isMovementLocked;
+            isMovementLocked = lockIt;
+            return wasLocked;
+        }
+
         public bool CanMove()
         {
-            return changeDirectionTimer.IsStopped()
+            return !isMovementLocked
+                && changeDirectionTimer.IsStopped()
                 && MoveTimer.IsStopped()
                 && rabbitTimer.IsStopped()
                 && deerTimer.IsStopped();
