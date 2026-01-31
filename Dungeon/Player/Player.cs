@@ -42,6 +42,9 @@ namespace Dungeon
         private AnimatedSprite2D sprite; // set in Godot
 
         [Export]
+        private Timer changeDirectionTimer; // set in Godot
+
+        [Export]
         private Timer moveTimer; // set in Godot
 
         [Export]
@@ -82,7 +85,11 @@ namespace Dungeon
 
         public override void _PhysicsProcess(double delta)
         {
-            bool canMove = moveTimer.IsStopped() && rabbitTimer.IsStopped() && deerTimer.IsStopped();
+            bool canMove =
+                changeDirectionTimer.IsStopped()
+                && moveTimer.IsStopped()
+                && rabbitTimer.IsStopped()
+                && deerTimer.IsStopped();
             if (canMove)
             {
                 foreach (var (moveKey, moveDir) in Controls.MoveDir)
@@ -100,6 +107,7 @@ namespace Dungeon
                         else
                         {
                             FaceDir(moveDir);
+                            break;
                         }
                     }
                 }
@@ -152,6 +160,7 @@ namespace Dungeon
             {
                 sprite.FlipH = true;
             }
+            changeDirectionTimer.Start();
         }
 
         private bool TryMove()

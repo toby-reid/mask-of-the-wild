@@ -195,10 +195,11 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "moveTimer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "changeDirectionTimer", "moveTimer")]
 script = ExtResource("1_fx7b5")
 sprite = NodePath("AnimatedSprite2D")
-moveTimer = NodePath("Timer")
+changeDirectionTimer = NodePath("ChangeDirectionTimer")
+moveTimer = NodePath("MoveTimer")
 cameraShaker = ExtResource("2_jn30y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -210,6 +211,10 @@ centered = false
 position = Vector2(10, 10)
 shape = ExtResource("4_1i0ta")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
+
+[node name="ChangeDirectionTimer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true

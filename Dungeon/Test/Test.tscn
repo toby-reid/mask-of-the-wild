@@ -15,13 +15,13 @@ tile_map_data = PackedByteArray("AAAAAAAAAAADAAAAAAABAAAAAAADAAAAAAABAAEAAAADAAA
 zoom = Vector2(3, 3)
 
 [node name="Collision" parent="." instance=ExtResource("2_c2it0")]
-position = Vector2(93, 30)
+position = Vector2(80, 20)
 
 [node name="Collision2" parent="." instance=ExtResource("2_c2it0")]
-position = Vector2(-105, 31)
+position = Vector2(-100, 20)
 
 [node name="Collision3" parent="." instance=ExtResource("2_c2it0")]
-position = Vector2(-44, -86)
+position = Vector2(-60, -60)
 
 [node name="Collision4" parent="." instance=ExtResource("2_c2it0")]
-position = Vector2(105, -83)
+position = Vector2(80, -60)
