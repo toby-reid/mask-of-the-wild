@@ -1,6 +1,8 @@
 using Godot;
 using System.Collections.Generic;
 
+// This object must be placed above the Player in the hierarchy, or it will fall behind.
+
 namespace Dungeon
 {
     public partial class CopyCat : CharacterBody2D
@@ -64,7 +66,7 @@ namespace Dungeon
             {
                 if (player.MoveTimer.IsStopped())
                 {
-                    player.MoveTimer.Start();
+                    Callable.From(() => player.MoveTimer.Start()).CallDeferred();
                 }
                 targetPos = Position + (Global.Constants.TileSize * direction);
                 double scalar = Global.Constants.TileSize * player.MoveSpeed;
@@ -87,7 +89,10 @@ namespace Dungeon
 
         private void FixPosition()
         {
-            Position = targetPos;
+            if (Position.DistanceTo(targetPos) <= Global.Constants.TileSize)
+            {
+                Position = targetPos;
+            }
         }
     }
 }

@@ -284,7 +284,10 @@ namespace Dungeon
 
         private void FixPosition()
         {
-            Position = targetPos;
+            if (Position.DistanceTo(targetPos) <= Global.Constants.TileSize)
+            {
+                Position = targetPos;
+            }
         }
 
         private bool IsPositionOnScreen(Vector2 position)

@@ -89,8 +89,8 @@ rotation = 1.5707964
 position = Vector2(300, 100)
 pathToRoom = "res://Dungeon/Levels/00_MeetTheRabbit/RabbitDungeonRabbit.tscn"
 
-[node name="Player" parent="." instance=ExtResource("7_xxsle")]
-position = Vector2(20, 100)
-
 [node name="CopyCat" parent="." instance=ExtResource("8_lmcwg")]
+position = Vector2(40, 100)
+
+[node name="Player" parent="." instance=ExtResource("7_xxsle")]
 position = Vector2(20, 100)
