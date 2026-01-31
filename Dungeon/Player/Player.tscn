@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cphs5d5t56ov3"]
 
 [ext_resource type="Texture2D" uid="uid://dm6k5yevfp5lq" path="res://icon.svg" id="1_5b0pr"]
-[ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Scenes/Dungeon/Player/Player.cs" id="1_fx7b5"]
+[ext_resource type="Script" uid="uid://b3v1xcilf0tf7" path="res://Dungeon/Player/Player.cs" id="1_fx7b5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fx7b5"]
 animations = [{
