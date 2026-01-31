@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://dgw8or5k1v0af"]
+
+[ext_resource type="Texture2D" uid="uid://dc3pnrp34nrdy" path="res://Scenes/Forest_Scene/Autumn_River_Bush.png" id="1_4ywu5"]
+[ext_resource type="Script" uid="uid://cfd806uwpa2tg" path="res://Scenes/Overworld_Objects/CursorListener/CursorListener.cs" id="2_2ackq"]
+[ext_resource type="Texture2D" uid="uid://y7rkosvjp81p" path="res://Scenes/Forest_Scene/NormalBush.png" id="2_ysmc7"]
+[ext_resource type="Texture2D" uid="uid://ci7hnk5x0g200" path="res://Scenes/Forest_Scene/glowingBush.png" id="4_4s0je"]
+[ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Overworld/Cursor/Cursor.tscn" id="5_4s0je"]
+[ext_resource type="PackedScene" uid="uid://ch4dht82ws4v1" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/Dialogue_Placeholder.tscn" id="6_ueh3d"]
+[ext_resource type="Script" uid="uid://dykxxuijhkmv" path="res://Scenes/Overworld_Objects/Placeholders/PlaceHolderCursorEventListener.cs" id="7_2oqs2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4s0je"]
+radius = 916.72
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysmc7"]
+size = Vector2(93, 90)
+
+[node name="RiverScene" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(483, 361.00003)
+scale = Vector2(0.317, 0.332)
+texture = ExtResource("1_4ywu5")
+
+[node name="BushListener" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
+position = Vector2(148, 607)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("2_2ackq")
+sprite = NodePath("Sprite2D")
+normalTexture = ExtResource("2_ysmc7")
+selectableTexture = ExtResource("4_4s0je")
+
+[node name="Sprite2D" type="Sprite2D" parent="BushListener"]
+texture = ExtResource("2_ysmc7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BushListener"]
+position = Vector2(-256.66666, 446.66663)
+shape = SubResource("CircleShape2D_4s0je")
+
+[node name="RiverListener" type="Area2D" parent="."]
+position = Vector2(497, 331)
+script = ExtResource("2_2ackq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RiverListener"]
+position = Vector2(-5.5, -35)
+shape = SubResource("RectangleShape2D_ysmc7")
+
+[node name="Cursor" parent="." instance=ExtResource("5_4s0je")]
+position = Vector2(756, 544)
+
+[node name="DialoguePlaceholder" parent="." instance=ExtResource("6_ueh3d")]
+
+[node name="MyListenerForEvents" type="Node2D" parent="." node_paths=PackedStringArray("cursorListeners", "dialoguePlaceholder")]
+script = ExtResource("7_2oqs2")
+cursorListeners = [NodePath("../BushListener"), NodePath("../RiverListener")]
+cursorStrings = PackedStringArray("This is a Bush", "This would take you down river if I knew what down river looked like... Alas your just stuck on this scene for now")
+dialoguePlaceholder = NodePath("../DialoguePlaceholder")
