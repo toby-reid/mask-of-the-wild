@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckla51wrswb34"]
+
+[ext_resource type="Script" uid="uid://46xeq2nxsc43" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/DialoguePlaceholder.cs" id="1_t3j5g"]
+
+[node name="BigDialouge" type="Control" node_paths=PackedStringArray("dialogueLabel")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_t3j5g")
+dialogueLabel = NodePath("RichTextLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 132.0
+offset_right = 887.0
+offset_bottom = 495.0
+color = Color(0.19607843, 0.19607843, 0.19607843, 0.60784316)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 137.0
+offset_right = 883.0
+offset_bottom = 491.0
+horizontal_alignment = 1

@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://c267i7fdblagv"]
+
+[ext_resource type="Texture2D" uid="uid://ok6drxu7gxd0" path="res://Dungeon/Levels/02_End_Screen/Dungeon_Gate_Autumn_Lower_RES.png" id="1_4bi3p"]
+[ext_resource type="Script" uid="uid://vjjneoyi0elt" path="res://Dungeon/Levels/02_End_Screen/EndScreenController.cs" id="3_klxy7"]
+[ext_resource type="PackedScene" uid="uid://ckla51wrswb34" path="res://Scenes/Overworld_Objects/Dialogue Placeholder/Big_Dialouge.tscn" id="3_wbe2p"]
+[ext_resource type="PackedScene" uid="uid://by1aq0ide5kqd" path="res://Scenes/Overworld_Objects/Cursor/Cursor.tscn" id="4_wbe2p"]
+[ext_resource type="Script" uid="uid://cfd806uwpa2tg" path="res://Scenes/Overworld_Objects/CursorListener/CursorListener.cs" id="5_4ix12"]
+[ext_resource type="Script" uid="uid://d2xynnhq5grm2" path="res://Scenes/Overworld_Objects/SceneLoader/SceneLoader.cs" id="6_kadvs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moiwi"]
+size = Vector2(156, 64)
+
+[node name="EndScreen" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="DungeonGateAutumnLowerRes" type="Sprite2D" parent="."]
+position = Vector2(1.1444092e-05, -0.5000229)
+scale = Vector2(0.43525666, 0.32741347)
+texture = ExtResource("1_4bi3p")
+
+[node name="End_Screen_Controller" type="Node2D" parent="." node_paths=PackedStringArray("EndDialogue")]
+script = ExtResource("3_klxy7")
+EndDialogue = NodePath("../BigDialouge")
+endDialogue = "Thank you for playing our game!
+
+Anderson Clements - Music
+Mason Herzog - Level Design
+Jack Mortensen - Overworld Art
+Emma Jacobson - Character Design & Art
+Tyler Jackson - Tiles & Level Design
+Vincent Climer - Overworld Programming
+Toby Reid - Supreme Leader and Best Boy (jk, just say Dungeon Programming)"
+
+[node name="BigDialouge" parent="." instance=ExtResource("3_wbe2p")]
+offset_left = -481.0
+offset_top = -360.0
+offset_right = -481.0
+offset_bottom = -360.0
+
+[node name="Button" type="Area2D" parent="."]
+position = Vector2(306, 243)
+script = ExtResource("5_4ix12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Button"]
+position = Vector2(78, 31)
+shape = SubResource("RectangleShape2D_moiwi")
+
+[node name="ColorRect" type="ColorRect" parent="Button"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(3.8799987, 1.5999987)
+color = Color(0.2231029, 0.2231029, 0.22310287, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button"]
+offset_right = 155.0
+offset_bottom = 64.0
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SceneLoader" type="Node2D" parent="." node_paths=PackedStringArray("SceneListener")]
+script = ExtResource("6_kadvs")
+ScenePath = "res://Scenes/Forest_Scene/River_Scene.tscn"
+SceneListener = NodePath("../Button")
+isEndScreen = true
+
+[node name="Cursor" parent="." instance=ExtResource("4_wbe2p")]
+position = Vector2(0, 230)
+MinBounds = Vector2(-464.6, -340)
+MaxBounds = Vector2(464.6, 340)
