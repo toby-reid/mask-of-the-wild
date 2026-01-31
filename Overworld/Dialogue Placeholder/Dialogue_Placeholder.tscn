@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ch4dht82ws4v1"]
+
+[ext_resource type="Script" uid="uid://46xeq2nxsc43" path="res://Overworld/Dialogue Placeholder/DialoguePlaceholder.cs" id="1_kdxhl"]
+
+[node name="DialoguePlaceholder" type="Control" node_paths=PackedStringArray("dialogueLabel")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kdxhl")
+dialogueLabel = NodePath("RichTextLabel")
+CharactersPerSecond = 30.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_right = 960.0
+offset_bottom = 64.0

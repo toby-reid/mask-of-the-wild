@@ -1,3 +1,4 @@
+using Godot;
 using System.Collections.Generic;
 
 namespace Global
@@ -7,6 +8,8 @@ namespace Global
         private PersistentData() {}
 
         public static Masks CurrentMask = Masks.NONE;
-        public static HashSet<Masks> AvailableMasks = [Masks.NONE, Masks.RABBIT, Masks.DEER];
+        public static HashSet<Masks> AvailableMasks = [Masks.NONE];
+
+        public static Vector2 RoomTransitionDirection = Vector2.Right;
     }
 }

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://kinaepl5ptht"]
+
+[ext_resource type="Script" uid="uid://ccahqswk2bbw1" path="res://Dungeon/Puzzles/DoorButton/StayDownButton.cs" id="1_sjo5k"]
+[ext_resource type="Texture2D" uid="uid://bcb2h5xwo6e84" path="res://Dungeon/Environment/DungeonTiles/DungeonsAndButtons.png" id="2_o10h3"]
+
+[node name="StayDownButton" type="Node2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_sjo5k")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o10h3")
+centered = false
+hframes = 5
+vframes = 5

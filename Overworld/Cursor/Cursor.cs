@@ -15,7 +15,7 @@ public partial class Cursor : Node2D
 		//Freeze game if diologue is active
 		if (GameState.IsDialogueActive)
 			return;
-        
+
 		if (Input.IsActionPressed("ui_up")) input.Y -= 1;
 		if (Input.IsActionPressed("ui_down")) input.Y += 1;
 		if (Input.IsActionPressed("ui_left")) input.X -= 1;
