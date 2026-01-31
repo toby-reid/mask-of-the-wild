@@ -3,7 +3,7 @@ using System;
 
 public partial class Cursor : Node2D
 {
-	[Export] public float Speed = 200f; // pixels per second
+	[Export] public float Speed = 500f; // pixels per second
 	[Export] public Vector2 MinBounds = new Vector2(0, 0);
 	[Export] public Vector2 MaxBounds = new Vector2(1920, 1080);
 
