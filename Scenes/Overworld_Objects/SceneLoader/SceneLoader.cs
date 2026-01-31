@@ -1,3 +1,4 @@
+using Global;
 using Godot;
 using System;
 using System.Security.Cryptography.X509Certificates;
@@ -26,7 +27,11 @@ public partial class SceneLoader : Node2D
             if (isRiverDungeon)
                 GameState.isRiverVisited = true;
             if (isEndScreen)
+            {
                 GameState.isRiverVisited = false;
+                Global.PersistentData.CurrentMask = Masks.NONE;
+                Global.PersistentData.AvailableMasks = [Masks.NONE];
+            }
         }
     }
 
